@@ -29,10 +29,10 @@ def is_bipartite(graph):
     nodes = list(graph.adj.keys())
     color = {n: -1 for n in nodes}
     steps = []
-
+    
     for start in nodes:
         if color[start] != -1: continue
-        
+
         color[start] = 0
         queue = deque([start])
         steps.append(f"Component root: node {start} -> color Set A (0)")
@@ -57,7 +57,7 @@ def visualize_if_possible(graph, is_bip, color_map, label):
     if not HAS_VISUALS:
         print("\n(Note: Install matplotlib & networkx to see the visual window)")
         return
-
+        
     G = nx.Graph()
     for u in graph.adj:
         for v in graph.adj[u]:
@@ -82,8 +82,7 @@ def visualize_if_possible(graph, is_bip, color_map, label):
 def print_result(graph, label="Custom Graph"):
     print(f"\n" + "="*60)
     print(f"  {label.upper()}")
-    print("="*60)
-    
+    print("="*60)  
     nodes = list(graph.adj.keys())
     edges = []
     seen = set()
@@ -91,8 +90,7 @@ def print_result(graph, label="Custom Graph"):
         for v in graph.adj[u]:
             if (v, u) not in seen:
                 edges.append((u, v))
-                seen.add((u, v))
-    
+                seen.add((u, v))  
     print(f"  Vertices : {len(nodes)} {nodes}")
     print(f"  Edges    : {edges}")
 
@@ -106,7 +104,7 @@ def print_result(graph, label="Custom Graph"):
         print("  Status: BIPARTITE [Set A = blue, Set B = red]")
     else:
         print("  Status: NOT BIPARTITE (Contains odd cycle)")
-
+    
     # Show the window!
     visualize_if_possible(graph, bipartite, color, label)
 
@@ -122,7 +120,9 @@ def load_from_txt(filename):
                     g.add_edge(parts[0].strip(), parts[1].strip())
     return g
 
-# ===================== MAIN MENU =====================
+
+
+
 if __name__ == "__main__":
     print("\n" + "#"*45)
     print("   ADMC ASSIGNMENT: BIPARTITE GRAPH TOOL")
